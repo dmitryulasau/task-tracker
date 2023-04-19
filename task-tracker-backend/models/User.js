@@ -7,9 +7,19 @@ const UserSchema = new mongoose.Schema(
       required: true,
       unique: true,
     },
-    email: { type: String, required: true, unique: true },
-    password: { type: String, required: true },
-    profilePicture: { type: String, default: "" },
+    email: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+    password: {
+      type: String,
+      required: true,
+    },
+    profilePic: {
+      type: String,
+      default: "",
+    },
   },
   { timestamps: true }
 );
@@ -26,4 +36,5 @@ const validate = (data) => {
   return schema.validate(data);
 };
 
-module.exports = { User, validate };
+// module.exports = { User, validate };
+module.exports = mongoose.model("User", UserSchema);
