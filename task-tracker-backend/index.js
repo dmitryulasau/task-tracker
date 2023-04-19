@@ -4,6 +4,7 @@ const app = express();
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 const authRoute = require("./routes/auth");
+const userRoute = require("./routes/users");
 
 dotenv.config();
 app.use(express.json());
@@ -17,6 +18,7 @@ mongoose
   .catch((error) => console.log("Error connecting to MongoDB", error));
 
 app.use("/auth", authRoute);
+app.use("/users", userRoute);
 
 app.listen(process.env.PORT, () => {
   console.log(`Server running at http://localhost:${process.env.PORT}`);
