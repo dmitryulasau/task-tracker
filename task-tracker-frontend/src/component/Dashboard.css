@@ -1,0 +1,34 @@
+.dashboard {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin: 20px auto;
+    max-width: 800px;
+    background-color: rgb(194, 218, 239);
+    border-radius: 10px;
+  }
+  
+  .dashboard-left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 25%;
+    margin-right: 20px;
+  }
+  
+  .dashboard-left button {
+    margin-bottom: 10px;
+  }
+  
+  .dashboard-right {
+    display: table-column;
+    background-color: rgb(212, 233, 253);
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    overflow-y: scroll;
+    height: 41em;
+    width: 75%;
+    border-radius: 0px 10px 10px 0px;
+
+  }
+  
