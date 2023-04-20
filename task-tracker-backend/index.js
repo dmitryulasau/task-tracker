@@ -5,6 +5,7 @@ const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 const authRoute = require("./routes/auth");
 const userRoute = require("./routes/users");
+const taskRoute = require("./routes/tasks");
 
 dotenv.config();
 app.use(express.json());
@@ -19,6 +20,7 @@ mongoose
 
 app.use("/auth", authRoute);
 app.use("/users", userRoute);
+app.use("/tasks", taskRoute);
 
 app.listen(process.env.PORT, () => {
   console.log(`Server running at http://localhost:${process.env.PORT}`);
