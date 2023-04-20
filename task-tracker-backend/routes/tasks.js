@@ -53,4 +53,37 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
+//GET TASK
+router.get("/:id", async (req, res) => {
+  try {
+    const task = await Task.findById(req.params.id);
+    res.status(200).json(task);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+//GET ALL TASKS
+router.get("/", async (req, res) => {
+  const username = req.query.user;
+  const catName = req.query.cat;
+  try {
+    let tasks;
+    if (username) {
+      tasks = await Task.find({ username });
+    } else if (catName) {
+      tasks = await Task.find({
+        categories: {
+          $in: [catName],
+        },
+      });
+    } else {
+      tasks = await Task.find();
+    }
+    res.status(200).json(tasks);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 module.exports = router;

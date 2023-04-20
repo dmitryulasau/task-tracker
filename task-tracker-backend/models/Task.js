@@ -12,7 +12,11 @@ const TaskSchema = new mongoose.Schema(
     },
     status: {
       type: Array,
-      required: true,
+      default: [],
+    },
+    categories: {
+      type: Array,
+      required: false,
     },
     dueDate: {
       type: Date,

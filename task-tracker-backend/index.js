@@ -6,9 +6,11 @@ const mongoose = require("mongoose");
 const authRoute = require("./routes/auth");
 const userRoute = require("./routes/users");
 const taskRoute = require("./routes/tasks");
+const categoryRoute = require("./routes/categories");
 
 dotenv.config();
 app.use(express.json());
+app.use("/images", express.static(path.join(__dirname, "/images")));
 
 // DATABASE CONNECTION
 const uri = process.env.MONGO_URL;
@@ -21,6 +23,7 @@ mongoose
 app.use("/auth", authRoute);
 app.use("/users", userRoute);
 app.use("/tasks", taskRoute);
+app.use("/categories", categoryRoute);
 
 app.listen(process.env.PORT, () => {
   console.log(`Server running at http://localhost:${process.env.PORT}`);
