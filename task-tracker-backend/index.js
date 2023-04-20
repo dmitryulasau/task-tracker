@@ -10,7 +10,6 @@ const categoryRoute = require("./routes/categories");
 
 dotenv.config();
 app.use(express.json());
-app.use("/images", express.static(path.join(__dirname, "/images")));
 
 // DATABASE CONNECTION
 const uri = process.env.MONGO_URL;
