@@ -35,42 +35,6 @@ function Register({ handleRedirect }) {
   }
 
   return (
-    // <div class="container">
-    //   <h1>Register</h1>
-    //   <form onSubmit={handleSubmit}>
-    //     <div class="input-field">
-    //       <label for="username">
-    //         Username
-    //       </label>
-    //       <input
-    //       type="text"
-    //       id="username"
-    //       name="username"
-    //       placeholder="Enter username"
-    //       value={name}
-    //       onChange={handleUsernameChange}
-    //       required
-    //       />
-    //     </div>
-    //     <div class="input-field">
-    //       <label for="email">Email</label>
-    //       <input type="email" id="email" name="email" placeholder="Enter email" value={email}
-    //         onChange={handleEmailChange}
-    //         required/>
-    //     </div>
-    //     <div class="input-field">
-    //       <label for="password">Password</label>
-    //       <input type="password"
-    //       id="password"
-    //       name="password" placeholder="Enter password"  value={password}
-    //         onChange={handlePasswordChange}
-    //         required/>
-    //     </div>
-    //     <button type="submit" class="btn">Register</button>
-    //   </form>
-    // </div>
-
-    // ===================
     <div class="container">
       <h1>Register</h1>
       <form onSubmit={handleSubmit}>
@@ -116,7 +80,7 @@ function Register({ handleRedirect }) {
         </button>
         <div class="login-link">
           <span>Already have an account? </span>
-          <a href="login.html">Login Here</a>
+          <a href="/login">Login Here</a>
         </div>
       </form>
     </div>
