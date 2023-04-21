@@ -75,7 +75,8 @@ function Dashboard() {
       <div className="dashboard-left">
         <button onClick={handleSortByName}>Sort by Name</button>
         <button onClick={handleSortByDate}>Sort by Date</button>
-        <Link to="/create-task">Create New Task</Link>
+        <button ><a href='/create-task'>Create New Task</a></button>
+        <button ><a href='/login'>Log Out</a></button>
       </div>
       <div className="dashboard-right">
         {sortedTasks.map(task => (

@@ -81,6 +81,12 @@ h1 {
   font-size: 3rem;
   margin-bottom: 2rem;
   text-align: center;
+  color: #ffffff;
+  text-shadow:
+  0 4.3px 2.2px rgba(247, 255, 184, 0.011),
+  0 1.3px 5.3px rgba(249, 255, 141, 0.3),
+  0 2.7px 2.2px rgba(255, 250, 186, 0.011),
+  0 1.1px 5.3px rgba(255, 255, 255, 0.159);
 }
 
 .input-field {
