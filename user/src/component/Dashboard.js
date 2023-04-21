@@ -18,17 +18,21 @@ function Dashboard() {
   const [showCreateTask, setShowCreateTask] = useState(false);
   const [showEditTask, setShowEditTask] = useState(false);
   const [editTask, setEditTask] = useState(null);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   console.log(tasks);
-
+  
   useEffect(() => {
+    setIsLoaded(true);
+
     const fetchTasks = async () => {
       const res = await axios.get("http://localhost:8800/tasks");
       setTasks(res.data);
     };
-
+    
     fetchTasks();
   }, []);
+  
 
   function handleSortByName() {
     setSortName("name");
@@ -65,6 +69,9 @@ function Dashboard() {
   return (
     <div>
       <h2 style={{ textAlign: "center" }}>Hello, {user.username}!</h2>
+      {isLoaded && (
+        <span className={style.dividor}></span>
+      )}
       <div className="dashboard">
         <div className="dashboard-left">
           <button onClick={handleSortByName}>Sort by Name</button>

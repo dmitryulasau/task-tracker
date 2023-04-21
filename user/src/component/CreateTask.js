@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import styles from "./CreateTask.module.css";
 import axios from "axios";
 import { Context } from "../context/Context";
@@ -40,7 +40,6 @@ function CreateTask({ onCreate, setShowCreateTask }) {
   return (
     <div>
       <h1 style={{ textAlign: "center" }}>Create Task</h1>
-
       <form className={styles.form} onSubmit={handleSubmit}>
         <label>
           Title:
