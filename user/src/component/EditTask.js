@@ -49,6 +49,7 @@ function EditTask({ onEdit, setShowEditTask }) {
         <label>
           Title:
           <input
+          placeholder="title"
             className={styles.input}
             type="text"
             value={title}

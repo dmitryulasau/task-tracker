@@ -18,10 +18,13 @@ function Dashboard() {
   const [showCreateTask, setShowCreateTask] = useState(false);
   const [showEditTask, setShowEditTask] = useState(false);
   const [editTask, setEditTask] = useState(null);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   console.log(tasks);
-
+  
   useEffect(() => {
+    setIsLoaded(true);
+
     const fetchTasks = async () => {
       const res = await axios.get(
         "http://localhost:8800/tasks/" ||
@@ -29,17 +32,12 @@ function Dashboard() {
       );
       setTasks(res.data);
     };
-
+    
     fetchTasks();
   }, []);
+  
 
-  function handleSortByName() {
-    setSortName("name");
-  }
 
-  function handleSortByDate() {
-    setSortDate("date");
-  }
 
   function handleDeleteTask(id) {
     setTasks(tasks.filter((task) => task.id !== id));
@@ -56,18 +54,32 @@ function Dashboard() {
     window.location.href = "/login";
   }
 
+  function handleSortByName() {
+    setSortName("name");
+    setSortDate(null);
+  }
+  
+  function handleSortByDate() {
+    setSortName(null);
+    setSortDate("date");
+  }
+  
   const sortedTasks = [...tasks].sort((a, b) => {
     if (sortName === "name") {
       return a.title.localeCompare(b.title);
     } else if (sortDate === "date") {
-      return a.dueDate.localeCompare(b.dueDate);
+      return new Date(a.dueDate) - new Date(b.dueDate);
     }
     return 0;
   });
+  
 
   return (
     <div>
       <h2 style={{ textAlign: "center" }}>Hello, {user.username}!</h2>
+      {isLoaded && (
+        <span className="dividor"></span>
+      )}
       <div className="dashboard">
         <div className="dashboard-left">
           <button onClick={handleSortByName}>Sort by Name</button>
@@ -83,13 +95,7 @@ function Dashboard() {
           >
             Create New Task
           </button>
-          <p>
-            Test functionality of Edit button below since I do not have access
-            to database
-          </p>
-          <button onClick={() => setShowEditTask(!showEditTask)}>
-            Edit Task
-          </button>
+
           <button className={style.logOut_btn} onClick={handleLogout}>
             Log Out
           </button>
