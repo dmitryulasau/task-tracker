@@ -28,15 +28,16 @@
   width: 100%;
   box-sizing: border-box;
 }
-.input:hover{
+.input:hover {
   border-color: rgb(237, 185, 255);
   box-shadow: 0 0 10px rgb(237, 185, 255);
-  transition: .3s;
+  transition: 0.3s;
 }
-.input:focus{
+.input:focus {
   border-color: dodgerblue;
   box-shadow: 0px 0px 10px dodgerblue;
-  transition: .3s;
+  transition: 0.3s;
+  border: none;
 }
 .textarea {
   padding: 10px;

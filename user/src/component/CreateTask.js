@@ -27,9 +27,7 @@ function CreateTask({ onCreate, setShowCreateTask }) {
         newTask
       );
       window.location.replace("/dashboard");
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   };
 
   function handleCategoryChange(event) {
@@ -43,9 +41,9 @@ function CreateTask({ onCreate, setShowCreateTask }) {
 
   return (
     <div>
-      <h1 style={{ textAlign: "center" }}>Create Task</h1>
+      <h1 style={{ textAlign: "center", color: "#343a40" }}>Create Task</h1>
       <form className={styles.form} onSubmit={handleSubmit}>
-        <label>
+        <label style={{ textAlign: "center", color: "#343a40" }}>
           Title:
           <input
             className={styles.input}
@@ -55,7 +53,7 @@ function CreateTask({ onCreate, setShowCreateTask }) {
             required
           />
         </label>
-        <label>
+        <label style={{ textAlign: "center", color: "#343a40" }}>
           Description:
           <textarea
             className={styles.input}
@@ -64,7 +62,7 @@ function CreateTask({ onCreate, setShowCreateTask }) {
             required
           />
         </label>
-        <label>
+        <label style={{ textAlign: "center", color: "#343a40" }}>
           Due Date:
           <input
             className={styles.input}

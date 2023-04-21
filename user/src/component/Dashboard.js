@@ -8,6 +8,7 @@ import CreateTask from "./CreateTask";
 import EditTask from "./EditTask";
 import { useContext } from "react";
 import { Context } from "../context/Context";
+import Developed from "./Developed";
 
 function Dashboard() {
   const { user } = useContext(Context);
@@ -20,8 +21,6 @@ function Dashboard() {
   const [editTask, setEditTask] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
 
-  console.log(tasks);
-  
   useEffect(() => {
     setIsLoaded(true);
 
@@ -32,12 +31,9 @@ function Dashboard() {
       );
       setTasks(res.data);
     };
-    
+
     fetchTasks();
   }, []);
-  
-
-
 
   function handleDeleteTask(id) {
     setTasks(tasks.filter((task) => task.id !== id));
@@ -58,12 +54,12 @@ function Dashboard() {
     setSortName("name");
     setSortDate(null);
   }
-  
+
   function handleSortByDate() {
     setSortName(null);
     setSortDate("date");
   }
-  
+
   const sortedTasks = [...tasks].sort((a, b) => {
     if (sortName === "name") {
       return a.title.localeCompare(b.title);
@@ -72,14 +68,13 @@ function Dashboard() {
     }
     return 0;
   });
-  
 
   return (
     <div>
-      <h2 style={{ textAlign: "center" }}>Hello, {user.username}!</h2>
-      {isLoaded && (
-        <span className="dividor"></span>
-      )}
+      <h2 style={{ textAlign: "center", fontWeight: 600 }}>
+        Hello, {user.username}!
+      </h2>
+      {isLoaded && <span className="dividor"></span>}
       <div className="dashboard">
         <div className="dashboard-left">
           <button onClick={handleSortByName}>Sort by Name</button>
@@ -124,7 +119,9 @@ function Dashboard() {
             <div>
               {tasks.filter((t) => t.username === user.username).length ===
               0 ? (
-                <h1 style={{ textAlign: "center" }}>YOU HAVE NO TASKS 🤗</h1>
+                <h1 style={{ textAlign: "center", color: "#868e96" }}>
+                  YOU HAVE NO TASKS YET 🤗
+                </h1>
               ) : (
                 <TaskList
                   tasks={sortedTasks}

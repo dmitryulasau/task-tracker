@@ -4,9 +4,8 @@
   border-radius: 5px;
   padding: 20px;
   margin: 10px 20px;
-  box-shadow:
-  0 4.3px 2.2px rgba(0, 0, 0, 0.011),
-  0 1.3px 5.3px rgb(0, 0, 0, 0.3);
+  box-shadow: 0 4.3px 2.2px rgba(0, 0, 0, 0.011),
+    0 1.3px 5.3px rgb(0, 0, 0, 0.3);
 }
 
 .task-card h3 {
@@ -27,6 +26,7 @@
 .task-card-buttons a,
 .task-card-buttons button {
   margin-right: 10px;
+
   padding: 5px 10px;
   border: none;
   border-radius: 5px;
@@ -34,19 +34,40 @@
 }
 
 .edit-button {
-  background-color: #007bff;
+  margin-left: 20px;
+  max-width: 50px;
+  background-color: #4dabf7;
   color: #fff;
 }
 .edit-button:hover {
   background-color: #ffffff;
-  color: #007bff;
+  color: #4dabf7;
 }
 .delete-button {
-  background-color: red;
+  max-width: 50px;
+  background-color: #fa5252;
   color: #fff;
 }
 
 .delete-button:hover {
   background-color: white;
-  color: red;
+  color: #fa5252;
+}
+
+.update-button {
+  transition: background-color 0.5s ease;
+  background-color: white;
+}
+
+.update-button:hover {
+  background-color: #20c997;
+}
+
+.cancel-button {
+  transition: background-color 0.5s ease;
+  background-color: white;
+}
+
+.cancel-button:hover {
+  background-color: #fa5252;
 }

@@ -3,7 +3,7 @@ import Reducer from "./Reducer";
 
 const INITIAL_STATE = {
   user: JSON.parse(localStorage.getItem("user")) || null,
-  // user: "ROSS",
+
   isFetching: false,
   error: false,
 };
@@ -17,7 +17,6 @@ export const ContextProvider = ({ children }) => {
     localStorage.setItem("user", JSON.stringify(state.user));
   }, [state.user]);
 
-  console.log(state);
   return (
     <Context.Provider
       value={{

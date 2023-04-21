@@ -109,7 +109,7 @@ function TaskCard({ task, onDelete }) {
             onChange={(e) => setTitle(e.target.value)}
           />
         ) : (
-          <h3>{task.title}</h3>
+          <h3 style={{ color: "#212529" }}>{task.title}</h3>
         )}
         <div className="task-card-buttons">
           <button className="edit-button" onClick={() => setUpdateMode(true)}>
@@ -129,62 +129,104 @@ function TaskCard({ task, onDelete }) {
           onChange={(e) => setDescription(e.target.value)}
         />
       ) : (
-        <p>{task.description}</p>
-      )}
-      {/* DUE DATE */}
-      {updateMode ? (
-        <label>
-          Previous Due Date: {convertDate(task.dueDate)}
-          <input
-            className={styles.input}
-            type="date"
-            value={dueDate}
-            onChange={(e) => setDueDate(e.target.value)}
-          />
-        </label>
-      ) : (
-        <p>Due Date: {convertDate(task.dueDate)}</p>
-      )}
-
-      {/* STATUS */}
-      {updateMode ? (
-        <label>
-          Status:
-          <select
-            className={styles.input}
-            value={status}
-            onChange={handleStatusChange}
-          >
-            <option value="Incomplete">Incomplete</option>
-            <option value="In Progress">In Progress</option>
-            <option value="Completed">Completed</option>
-          </select>
-        </label>
-      ) : (
         <p
           style={{
-            padding: "10px",
+            color: "#343a40",
             borderRadius: "6px",
-            display: "inline",
-            backgroundColor:
-              task.status[0] === "Completed"
-                ? "#d3f9d8"
-                : task.status[0] === "In Progress"
-                ? "#ffec99"
-                : "#ffa8a8",
+            backgroundColor: "#f8f9fa",
+
+            padding: "20px",
           }}
         >
-          Status: {task.status[0]}
+          {task.description}
         </p>
       )}
 
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
+        {/* DUE DATE */}
+        {updateMode ? (
+          <label>
+            Previous Due Date: {convertDate(task.dueDate)}
+            <input
+              className={styles.input}
+              type="date"
+              value={dueDate}
+              onChange={(e) => setDueDate(e.target.value)}
+            />
+          </label>
+        ) : (
+          <p
+            style={{
+              display: "inline",
+              color: "#343a40",
+              borderRadius: "6px",
+              backgroundColor: "#f8f9fa",
+              textAlign: "center",
+              fontWeight: 700,
+              padding: "10px",
+            }}
+          >
+            Due Date 📅: {convertDate(task.dueDate)}
+          </p>
+        )}
+
+        {/* STATUS */}
+        {updateMode ? (
+          <label>
+            Status:
+            <select
+              className={styles.input}
+              value={status}
+              onChange={handleStatusChange}
+            >
+              <option value="Incomplete">Incomplete</option>
+              <option value="In Progress">In Progress</option>
+              <option value="Completed">Completed</option>
+            </select>
+          </label>
+        ) : (
+          <p
+            style={{
+              color: "#343a40",
+              fontWeight: 700,
+              padding: "10px",
+              borderRadius: "6px",
+              display: "inline",
+              backgroundColor:
+                task.status[0] === "Completed"
+                  ? "#d3f9d8"
+                  : task.status[0] === "In Progress"
+                  ? "#ffec99"
+                  : "#ffa8a8",
+            }}
+          >
+            {task.status[0]}
+          </p>
+        )}
+      </div>
+
       {/* UPDATE BUTTON */}
       {updateMode && (
-        <div>
-          <button className="" onClick={handleUpdate}>
+        <div
+          style={{
+            marginTop: "10px",
+            display: "flex",
+            justifyContent: "space-between",
+          }}
+        >
+          <button className="update-button" onClick={handleUpdate}>
             Update
           </button>
-          <button className="" onClick={() => setUpdateMode(false)}>
+          <button
+            className="cancel-button"
+            onClick={() => setUpdateMode(false)}
+          >
             Cancel
           </button>
         </div>

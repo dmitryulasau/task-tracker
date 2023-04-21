@@ -14,7 +14,7 @@ dotenv.config();
 app.use(express.json());
 let port = process.env.PORT || 8000;
 // DATABASE CONNECTION
-const uri = process.env.MONGO_URL || "mongodb://127.0.0.1:27017";
+const uri = process.env.MONGO_URL;
 
 mongoose
   .connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })

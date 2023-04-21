@@ -5,6 +5,7 @@ import styles from "./Login.module.css";
 
 import { useContext, useRef } from "react";
 import { Context } from "../context/Context";
+import Developed from "./Developed";
 
 const Login = () => {
   const userRef = useRef();
@@ -36,7 +37,7 @@ const Login = () => {
       dispatch({ type: "LOGIN_FAILURE" });
     }
   };
-  console.log(data);
+
   return (
     <div className={styles.login_container}>
       <div className={styles.login_form_container}>
@@ -71,6 +72,8 @@ const Login = () => {
             >
               Sing In
             </button>
+
+            <Developed />
           </form>
         </div>
         <div className={styles.right}>
