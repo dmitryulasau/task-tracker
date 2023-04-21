@@ -70,7 +70,7 @@ function Dashboard() {
     <div>
       <h2 style={{ textAlign: "center" }}>Hello, {user.username}!</h2>
       {isLoaded && (
-        <span className={style.dividor}></span>
+        <span className="dividor"></span>
       )}
       <div className="dashboard">
         <div className="dashboard-left">
@@ -87,13 +87,7 @@ function Dashboard() {
           >
             Create New Task
           </button>
-          <p>
-            Test functionality of Edit button below since I do not have access
-            to database
-          </p>
-          <button onClick={() => setShowEditTask(!showEditTask)}>
-            Edit Task
-          </button>
+
           <button className={style.logOut_btn} onClick={handleLogout}>
             Log Out
           </button>

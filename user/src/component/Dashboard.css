@@ -35,17 +35,24 @@ body {
     min-width: 210px;
     transition: background-color 0.3s ease-in-out;
   }
-  .dashboard-left button:nth-child(6){
+  .dashboard-left button:nth-child(4){
     margin-top: 1.5rem;
     font-size: 1.2rem;
-    background-color: #ff0000;
+    background-color: #e54242;
     color: #fff;
     min-width: 210px;
     transition: background-color 0.3s ease-in-out;
   }
-  button:hover {
-    background-color: #9bbfec;
+  .dashboard-left button:nth-child(1):hover,
+  .dashboard-left button:nth-child(2):hover,
+  .dashboard-left button:nth-child(3):hover {
+    background-color: #1176f1;
+    
   }
+  .dashboard-left button:nth-child(4):hover {
+    background-color: #ed1212;
+  }
+  
   a{
     text-decoration: none;
     color: white;
