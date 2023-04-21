@@ -26,8 +26,7 @@ function Dashboard() {
 
     const fetchTasks = async () => {
       const res = await axios.get(
-        "http://localhost:8800/tasks/" ||
-          "https://tasktracker-mqm9.onrender.com/tasks/"
+        "https://tasktracker-mqm9.onrender.com/tasks/"
       );
       setTasks(res.data);
     };

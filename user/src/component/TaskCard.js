@@ -37,8 +37,7 @@ function TaskCard({ task, onDelete }) {
   const handleDelete = async () => {
     try {
       await axios.delete(
-        `http://localhost:8800/tasks/${task._id}` ||
-          `https://tasktracker-mqm9.onrender.com/tasks/${task._id}`,
+        `https://tasktracker-mqm9.onrender.com/tasks/${task._id}`,
         {
           data: { username: user.username },
         }
@@ -51,8 +50,7 @@ function TaskCard({ task, onDelete }) {
   const handleUpdate = async () => {
     try {
       await axios.put(
-        `http://localhost:8800/tasks/${task._id}` ||
-          `https://tasktracker-mqm9.onrender.com/tasks/${task._id}`,
+        `https://tasktracker-mqm9.onrender.com/tasks/${task._id}`,
         {
           username: user.username,
           title: title,
@@ -70,8 +68,7 @@ function TaskCard({ task, onDelete }) {
     const fetchTask = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8800/tasks/${task._id}` ||
-            `https://tasktracker-mqm9.onrender.com/tasks/${task._id}`
+          `https://tasktracker-mqm9.onrender.com/tasks/${task._id}`
         );
         const updatedTask = response.data;
         setTitle(updatedTask.title);

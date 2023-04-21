@@ -24,8 +24,7 @@ const Login = () => {
     dispatch({ type: "LOGIN_START" });
     try {
       const res = await axios.post(
-        "http://localhost:8800/auth/login/" ||
-          "https://tasktracker-mqm9.onrender.com/auth/login/",
+        "https://tasktracker-mqm9.onrender.com/auth/login/",
         {
           username: userRef.current.value,
           password: passwordRef.current.value,

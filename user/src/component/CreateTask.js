@@ -22,8 +22,7 @@ function CreateTask({ onCreate, setShowCreateTask }) {
 
     try {
       const res = await axios.post(
-        "http://localhost:8800/tasks/" ||
-          "https://tasktracker-mqm9.onrender.com/tasks/",
+        "https://tasktracker-mqm9.onrender.com/tasks/",
         newTask
       );
       window.location.replace("/dashboard");
