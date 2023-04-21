@@ -34,13 +34,7 @@ function Dashboard() {
   }, []);
   
 
-  function handleSortByName() {
-    setSortName("name");
-  }
 
-  function handleSortByDate() {
-    setSortDate("date");
-  }
 
   function handleDeleteTask(id) {
     setTasks(tasks.filter((task) => task.id !== id));
@@ -57,14 +51,25 @@ function Dashboard() {
     window.location.href = "/login";
   }
 
+  function handleSortByName() {
+    setSortName("name");
+    setSortDate(null);
+  }
+  
+  function handleSortByDate() {
+    setSortName(null);
+    setSortDate("date");
+  }
+  
   const sortedTasks = [...tasks].sort((a, b) => {
     if (sortName === "name") {
       return a.title.localeCompare(b.title);
     } else if (sortDate === "date") {
-      return a.dueDate.localeCompare(b.dueDate);
+      return new Date(a.dueDate) - new Date(b.dueDate);
     }
     return 0;
   });
+  
 
   return (
     <div>
