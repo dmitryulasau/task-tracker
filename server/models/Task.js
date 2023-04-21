@@ -12,7 +12,7 @@ const TaskSchema = new mongoose.Schema(
     },
     status: {
       type: Array,
-      default: [],
+      default: ["UNCOMPLETED"],
     },
     categories: {
       type: Array,
