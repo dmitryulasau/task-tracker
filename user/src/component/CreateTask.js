@@ -1,26 +1,36 @@
-import React, { useState } from 'react';
-import styles from './CreateTask.module.css';
+import React, { useContext, useState } from "react";
+import styles from "./CreateTask.module.css";
+import axios from "axios";
+import { Context } from "../context/Context";
 
 function CreateTask({ onCreate, setShowCreateTask }) {
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
-  const [dueDate, setDueDate] = useState('');
+  const { user } = useContext(Context);
+
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [dueDate, setDueDate] = useState("");
   const [categories, setCategories] = useState([]);
 
-  function handleSubmit(event) {
-    event.preventDefault();
-    const taskData = {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const newTask = {
+      username: user.username,
       title: title,
-      description: description,
-      dueDate: dueDate,
-      status: ['Incomplete']
+      description,
+      dueDate,
     };
-    console.log('Task data:', taskData);
-  }
+
+    try {
+      const res = await axios.post("http://localhost:8800/tasks/", newTask);
+      window.location.replace("/dashboard");
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   function handleCategoryChange(event) {
     const category = event.target.value;
-    setCategories(prevCategories => [...prevCategories, category]);
+    setCategories((prevCategories) => [...prevCategories, category]);
   }
 
   function handleExit() {
@@ -34,18 +44,46 @@ function CreateTask({ onCreate, setShowCreateTask }) {
       <form className={styles.form} onSubmit={handleSubmit}>
         <label>
           Title:
-          <input className={styles.input} type="text" value={title} onChange={(e) => setTitle(e.target.value)} required />
+          <input
+            className={styles.input}
+            type="text"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            required
+          />
         </label>
         <label>
           Description:
-          <textarea className={styles.input} value={description} onChange={(e) => setDescription(e.target.value)} required />
+          <textarea
+            className={styles.input}
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            required
+          />
         </label>
         <label>
           Due Date:
-          <input className={styles.input} type="date" value={dueDate} onChange={(e) => setDueDate(e.target.value)} />
+          <input
+            className={styles.input}
+            type="date"
+            value={dueDate}
+            onChange={(e) => setDueDate(e.target.value)}
+          />
         </label>
-        <button className={styles.cancel_btn} type="button" onClick={handleExit}>Cancel</button>
-        <button className={styles.create_btn} type="button" onClick={handleSubmit}>Create</button>
+        <button
+          className={styles.cancel_btn}
+          type="button"
+          onClick={handleExit}
+        >
+          Cancel
+        </button>
+        <button
+          className={styles.create_btn}
+          type="button"
+          onClick={handleSubmit}
+        >
+          Create
+        </button>
       </form>
     </div>
   );

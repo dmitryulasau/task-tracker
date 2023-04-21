@@ -6,14 +6,20 @@ import axios from "axios";
 import TaskList from "./TaskList";
 import CreateTask from "./CreateTask";
 import EditTask from "./EditTask";
+import { useContext } from "react";
+import { Context } from "../context/Context";
 
 function Dashboard() {
+  const { user } = useContext(Context);
+
   const [tasks, setTasks] = useState([]);
   const [sortName, setSortName] = useState("name");
   const [sortDate, setSortDate] = useState("date");
   const [showCreateTask, setShowCreateTask] = useState(false);
   const [showEditTask, setShowEditTask] = useState(false);
   const [editTask, setEditTask] = useState(null);
+
+  console.log(tasks);
 
   useEffect(() => {
     const fetchTasks = async () => {
@@ -41,6 +47,12 @@ function Dashboard() {
     setShowEditTask(true);
   }
 
+  // LOGOUT
+  function handleLogout() {
+    localStorage.removeItem("user");
+    window.location.href = "/login";
+  }
+
   const sortedTasks = [...tasks].sort((a, b) => {
     if (sortName === "name") {
       return a.title.localeCompare(b.title);
@@ -51,36 +63,69 @@ function Dashboard() {
   });
 
   return (
-    <div className="dashboard">
-      <div className="dashboard-left">
-        <button onClick={handleSortByName}>Sort by Name</button>
-        <button onClick={handleSortByDate}>Sort by Date</button>
-        <button onClick={() => {
-          //make edit button state false
-          setShowCreateTask(!showCreateTask);
-            if (showCreateTask) {
-              setShowEditTask(false);
-            }
-          }}>Create New Task
-        </button>
-        <p>Test functionality of Edit button below since I do not have access to database</p>
-        <button onClick={() => setShowEditTask(!showEditTask)}>Edit Task</button>
-        <button className={style.logOut_btn}> Log Out</button>
-      </div>
-      <div className={`dashboard-right ${showCreateTask ? "dashboard-create show" : (showEditTask ? "dashboard-edit show" : "")}`}>
-        {showCreateTask ? (
-          <CreateTask setTasks={setTasks} setShowCreateTask={setShowCreateTask} />
-        ) : showEditTask ? (
-          <EditTask task={editTask} setTasks={setTasks} setShowEditTask={setShowEditTask} />
-        ) : (
-          <div>
-            {tasks.length === 0 ? (
-              <h1 style={{ textAlign: "center" }}>YOU HAVE NO TASKS 🤗</h1>
-            ) : (
-              <TaskList tasks={sortedTasks} onDelete={handleDeleteTask} onEdit={handleEditTask} />
-            )}
-          </div>
-        )}
+    <div>
+      <h2 style={{ textAlign: "center" }}>Hello, {user.username}!</h2>
+      <div className="dashboard">
+        <div className="dashboard-left">
+          <button onClick={handleSortByName}>Sort by Name</button>
+          <button onClick={handleSortByDate}>Sort by Date</button>
+          <button
+            onClick={() => {
+              //make edit button state false
+              setShowCreateTask(!showCreateTask);
+              if (showCreateTask) {
+                setShowEditTask(false);
+              }
+            }}
+          >
+            Create New Task
+          </button>
+          <p>
+            Test functionality of Edit button below since I do not have access
+            to database
+          </p>
+          <button onClick={() => setShowEditTask(!showEditTask)}>
+            Edit Task
+          </button>
+          <button className={style.logOut_btn} onClick={handleLogout}>
+            Log Out
+          </button>
+        </div>
+        <div
+          className={`dashboard-right ${
+            showCreateTask
+              ? "dashboard-create show"
+              : showEditTask
+              ? "dashboard-edit show"
+              : ""
+          }`}
+        >
+          {showCreateTask ? (
+            <CreateTask
+              setTasks={setTasks}
+              setShowCreateTask={setShowCreateTask}
+            />
+          ) : showEditTask ? (
+            <EditTask
+              task={editTask}
+              setTasks={setTasks}
+              setShowEditTask={setShowEditTask}
+            />
+          ) : (
+            <div>
+              {tasks.filter((t) => t.username === user.username).length ===
+              0 ? (
+                <h1 style={{ textAlign: "center" }}>YOU HAVE NO TASKS 🤗</h1>
+              ) : (
+                <TaskList
+                  tasks={sortedTasks}
+                  onDelete={handleDeleteTask}
+                  onEdit={handleEditTask}
+                />
+              )}
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

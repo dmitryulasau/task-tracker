@@ -3,7 +3,14 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import styles from "./Login.module.css";
 
+import { useContext, useRef } from "react";
+import { Context } from "../context/Context";
+
 const Login = () => {
+  const userRef = useRef();
+  const passwordRef = useRef();
+  const { dispatch, isFetching } = useContext(Context);
+
   const [data, setData] = useState({ username: "", password: "" });
   const [error, setError] = useState("");
 
@@ -13,22 +20,19 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    dispatch({ type: "LOGIN_START" });
     try {
-      const url = "http://localhost:8800/auth/login/";
-      const { data: res } = await axios.post(url, data);
-      localStorage.setItem("token", res.data);
+      const res = await axios.post("http://localhost:8800/auth/login/", {
+        username: userRef.current.value,
+        password: passwordRef.current.value,
+      });
       window.location = "/dashboard";
-    } catch (error) {
-      if (
-        error.response &&
-        error.response.status >= 400 &&
-        error.response.status <= 500
-      ) {
-        setError(error.response.data.message);
-      }
+      dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
+    } catch (err) {
+      dispatch({ type: "LOGIN_FAILURE" });
     }
   };
-
+  console.log(data);
   return (
     <div className={styles.login_container}>
       <div className={styles.login_form_container}>
@@ -40,9 +44,10 @@ const Login = () => {
               placeholder="Username"
               name="username"
               onChange={handleChange}
-              value={data.email}
+              value={data.username}
               required
               className={styles.input}
+              ref={userRef}
             />
             <input
               type="password"
@@ -52,9 +57,14 @@ const Login = () => {
               value={data.password}
               required
               className={styles.input}
+              ref={passwordRef}
             />
             {error && <div className={styles.error_msg}>{error}</div>}
-            <button type="submit" className={styles.green_btn}>
+            <button
+              type="submit"
+              className={styles.green_btn}
+              disabled={isFetching}
+            >
               Sing In
             </button>
           </form>
