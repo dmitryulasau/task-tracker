@@ -33,11 +33,11 @@
   cursor: pointer;
 }
 
-.edit-button{
+.edit-button {
   background-color: #007bff;
   color: #fff;
 }
-.edit-button:hover{
+.edit-button:hover {
   background-color: #ffffff;
   color: #007bff;
 }

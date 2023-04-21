@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import Register from './component/Register';
-import Login from './component/Login';
-import Dashboard from './component/Dashboard';
+import React, { useState } from "react";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import Register from "./component/Register";
+import Login from "./component/Login";
+import Dashboard from "./component/Dashboard";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -17,9 +17,10 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Register />} />
+          <Route path="/signup" element={<Register />} />
           <Route path="/login" element={<Login onLogin={handleLogin} />} />
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/" element={<Navigate replace to="/login" />} />
         </Routes>
       </BrowserRouter>
     </div>
