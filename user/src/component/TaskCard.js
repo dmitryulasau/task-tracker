@@ -36,9 +36,13 @@ function TaskCard({ task, onDelete }) {
   // DELETE TASK
   const handleDelete = async () => {
     try {
-      await axios.delete(`http://localhost:8800/tasks/${task._id}`, {
-        data: { username: user.username },
-      });
+      await axios.delete(
+        `http://localhost:8800/tasks/${task._id}` ||
+          `https://tasktracker-mqm9.onrender.com/tasks/${task._id}`,
+        {
+          data: { username: user.username },
+        }
+      );
       window.location.replace("/dashboard");
     } catch (err) {}
   };
@@ -46,13 +50,17 @@ function TaskCard({ task, onDelete }) {
   // EDIT TASK
   const handleUpdate = async () => {
     try {
-      await axios.put(`http://localhost:8800/tasks/${task._id}`, {
-        username: user.username,
-        title: title,
-        description: description,
-        dueDate: dueDate,
-        status: [status],
-      });
+      await axios.put(
+        `http://localhost:8800/tasks/${task._id}` ||
+          `https://tasktracker-mqm9.onrender.com/tasks/${task._id}`,
+        {
+          username: user.username,
+          title: title,
+          description: description,
+          dueDate: dueDate,
+          status: [status],
+        }
+      );
       setUpdateMode(false);
       window.location.reload();
     } catch (err) {}
@@ -62,7 +70,8 @@ function TaskCard({ task, onDelete }) {
     const fetchTask = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8800/tasks/${task._id}`
+          `http://localhost:8800/tasks/${task._id}` ||
+            `https://tasktracker-mqm9.onrender.com/tasks/${task._id}`
         );
         const updatedTask = response.data;
         setTitle(updatedTask.title);

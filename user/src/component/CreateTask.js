@@ -21,7 +21,11 @@ function CreateTask({ onCreate, setShowCreateTask }) {
     };
 
     try {
-      const res = await axios.post("http://localhost:8800/tasks/", newTask);
+      const res = await axios.post(
+        "http://localhost:8800/tasks/" ||
+          "https://tasktracker-mqm9.onrender.com/tasks/",
+        newTask
+      );
       window.location.replace("/dashboard");
     } catch (error) {
       console.log(error);

@@ -19,7 +19,9 @@ const Signup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const url = "http://localhost:8800/auth/register";
+      const url =
+        "http://localhost:8800/auth/register" ||
+        "https://tasktracker-mqm9.onrender.com//auth/register";
       console.log(url);
       const { data: res } = await axios.post(url, data);
       navigate("/login");
