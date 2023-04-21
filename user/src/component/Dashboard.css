@@ -27,8 +27,7 @@ body {
   }
   .dashboard-left button:nth-child(1),
   .dashboard-left button:nth-child(2),
-  .dashboard-left button:nth-child(3),
-  .dashboard-left button:nth-child(5){
+  .dashboard-left button:nth-child(3){
     margin-top: 1.5rem;
     font-size: 1.2rem;
     background-color: #4d75bb;
@@ -65,3 +64,34 @@ body {
     border-top-right-radius: 14px;
     border-bottom-right-radius: 14px;
   }
+  h2 {
+    color:#ffffff;
+    font-weight: 300;
+    font-size: 50px;
+    margin-bottom: 20px;
+    margin: 10px auto;
+    text-shadow: 0 0 10px rgb(255, 255, 255);
+  }
+  .dividor {
+    display: block;
+    background-image: linear-gradient(to right, rgb(22, 22, 255), rgb(229, 100, 255));
+    height: 3px;
+    width: 100%;
+    max-width: 500px;
+    margin: 0px 290px 20px;
+    animation: reveal 2s forwards;
+    border-radius: 20px;
+  }
+  
+  @keyframes reveal {
+    0% {
+      width: 0;
+      min-width: 0;
+      max-width: 0;
+    }
+    100% {
+      width: 100%;
+      max-width: 500px;
+    }
+  }
+  
