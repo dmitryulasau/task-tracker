@@ -4,6 +4,9 @@
   border-radius: 5px;
   padding: 20px;
   margin: 10px 20px;
+  box-shadow:
+  0 4.3px 2.2px rgba(0, 0, 0, 0.011),
+  0 1.3px 5.3px rgb(0, 0, 0, 0.3);
 }
 
 .task-card h3 {
