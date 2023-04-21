@@ -43,10 +43,8 @@
   padding: 0;
 }
 
-
-
 .edit_btn,
-.cancel_btn  {
+.cancel_btn {
   margin: 5px;
   border: none;
   padding: 12px 0;
@@ -58,12 +56,11 @@
   cursor: pointer;
   transition: opacity 0.4s ease-in-out;
 }
-.cancel_btn{
+.cancel_btn {
   background-color: rgb(188, 50, 50);
 }
-.edit_btn{
+.edit_btn {
   background-color: #4787c7;
-
 }
 
 .cancel_btn:hover {
@@ -71,7 +68,7 @@
   opacity: 0.8;
 }
 
-.edit_btn:hover{
+.edit_btn:hover {
   background-color: #749bc1;
   opacity: 0.8;
 }
@@ -79,4 +76,8 @@ textarea {
   resize: none;
   min-width: 40rem;
   min-height: 10em;
+}
+
+.completed-task {
+  background-color: red;
 }
