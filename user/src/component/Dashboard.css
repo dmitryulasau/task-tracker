@@ -1,34 +1,50 @@
 .dashboard {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    margin: 20px auto;
-    max-width: 800px;
-    background-color: rgb(194, 218, 239);
-    border-radius: 10px;
-  }
-  
-  .dashboard-left {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 25%;
-    margin-right: 20px;
-  }
-  
-  .dashboard-left button {
-    margin-bottom: 10px;
-  }
-  
-  .dashboard-right {
-    display: table-column;
-    background-color: rgb(212, 233, 253);
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    overflow-y: scroll;
-    height: 41em;
-    width: 75%;
-    border-radius: 0px 10px 10px 0px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin: 20px auto;
+  max-width: 800px;
+  background-color: rgb(194, 218, 239);
+  border-radius: 10px;
+}
 
-  }
-  
+.dashboard-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 25%;
+  margin-right: 20px;
+}
+
+.dashboard-left button {
+  margin-bottom: 10px;
+}
+
+.dashboard-right {
+  display: table-column;
+  background-color: rgb(212, 233, 253);
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  overflow-y: scroll;
+  height: 41em;
+  width: 75%;
+  border-radius: 0px 10px 10px 0px;
+}
+
+/* LOGOUT */
+.logout-button {
+  margin-top: 20px;
+  font-weight: 600;
+  padding: 10px 20px;
+  border-radius: 0.6rem;
+  background-color: #ff6b6b;
+
+  color: #0f1c35;
+
+  transition: 0.3s;
+}
+
+.logout-button:hover {
+  cursor: pointer;
+  background-color: rgba(255, 107, 107, 0.568);
+}

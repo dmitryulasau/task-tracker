@@ -31,6 +31,11 @@ function Dashboard() {
     setTasks(tasks.filter((task) => task.id !== id));
   }
 
+  function handleLogout() {
+    localStorage.removeItem("user");
+    window.location.href = "/login";
+  }
+
   const sortedTasks = [...tasks].sort((a, b) => {
     if (sortName === "name") {
       return a.title.localeCompare(b.title);
@@ -46,7 +51,11 @@ function Dashboard() {
         <button onClick={handleSortByName}>Sort by Name</button>
         <button onClick={handleSortByDate}>Sort by Date</button>
         <Link to="/create-task">Create New Task</Link>
+        <div className="logout-button" onClick={handleLogout}>
+          Logout
+        </div>
       </div>
+
       <div className="dashboard-right">
         {/* {sortedTasks.map((task) => (
           <TaskCard key={task._id} task={tasks} onDelete={handleDeleteTask} />

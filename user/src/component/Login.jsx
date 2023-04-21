@@ -3,9 +3,14 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import styles from "./Login.module.css";
 
+import { useContext } from "react";
+import { Context } from "../context/Context";
+
 const Login = () => {
   const [data, setData] = useState({ username: "", password: "" });
   const [error, setError] = useState("");
+
+  const { dispatch, isFetching } = useContext(Context);
 
   const handleChange = ({ currentTarget: input }) => {
     setData({ ...data, [input.name]: input.value });
@@ -13,12 +18,15 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    dispatch({ type: "LOGIN_START" });
     try {
       const url = "http://localhost:8800/auth/login/";
       const { data: res } = await axios.post(url, data);
-      localStorage.setItem("token", res.data);
+
       window.location = "/dashboard";
+      dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
     } catch (error) {
+      dispatch({ type: "LOGIN_FAILURE" });
       if (
         error.response &&
         error.response.status >= 400 &&
@@ -54,7 +62,11 @@ const Login = () => {
               className={styles.input}
             />
             {error && <div className={styles.error_msg}>{error}</div>}
-            <button type="submit" className={styles.green_btn}>
+            <button
+              type="submit"
+              className={styles.green_btn}
+              disabled={isFetching}
+            >
               Sing In
             </button>
           </form>
