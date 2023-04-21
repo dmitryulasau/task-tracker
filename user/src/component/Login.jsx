@@ -69,7 +69,7 @@ const Login = () => {
               className={styles.green_btn}
               disabled={isFetching}
             >
-              Sing In
+              Sign In
             </button>
 
             <Developed />
