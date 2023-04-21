@@ -25,15 +25,22 @@ body {
     width: 25%;
     height: inherit;
   }
-  .dashboard-left button {
+  .dashboard-left button:nth-child(1),
+  .dashboard-left button:nth-child(2),
+  .dashboard-left button:nth-child(3),
+  .dashboard-left button:nth-child(5){
     margin-top: 1.5rem;
-    padding: 0.5rem 2rem;
     font-size: 1.2rem;
     background-color: #4d75bb;
     color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+    min-width: 210px;
+    transition: background-color 0.3s ease-in-out;
+  }
+  .dashboard-left button:nth-child(6){
+    margin-top: 1.5rem;
+    font-size: 1.2rem;
+    background-color: #ff0000;
+    color: #fff;
     min-width: 210px;
     transition: background-color 0.3s ease-in-out;
   }
@@ -58,4 +65,3 @@ body {
     border-top-right-radius: 14px;
     border-bottom-right-radius: 14px;
   }
-  

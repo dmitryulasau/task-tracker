@@ -12,12 +12,7 @@ const cors = require("cors");
 app.use(cors());
 dotenv.config();
 app.use(express.json());
-<<<<<<< HEAD:server/index.js
-app.use(cors());
-
-=======
 let port = process.env.PORT || 8000;
->>>>>>> 1c9cad15b0cfd91187218f5062c260c1a86ef525:task-tracker-backend/index.js
 // DATABASE CONNECTION
 const uri = process.env.MONGO_URL || "mongodb://127.0.0.1:27017";
 

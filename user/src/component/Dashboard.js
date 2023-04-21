@@ -4,11 +4,16 @@ import TaskCard from "./TaskCard";
 import style from "./Dashboard.css";
 import axios from "axios";
 import TaskList from "./TaskList";
+import CreateTask from "./CreateTask";
+import EditTask from "./EditTask";
 
 function Dashboard() {
   const [tasks, setTasks] = useState([]);
   const [sortName, setSortName] = useState("name");
   const [sortDate, setSortDate] = useState("date");
+  const [showCreateTask, setShowCreateTask] = useState(false);
+  const [showEditTask, setShowEditTask] = useState(false);
+  const [editTask, setEditTask] = useState(null);
 
   useEffect(() => {
     const fetchTasks = async () => {
@@ -31,6 +36,11 @@ function Dashboard() {
     setTasks(tasks.filter((task) => task.id !== id));
   }
 
+  function handleEditTask(task) {
+    setEditTask(task);
+    setShowEditTask(true);
+  }
+
   const sortedTasks = [...tasks].sort((a, b) => {
     if (sortName === "name") {
       return a.title.localeCompare(b.title);
@@ -45,16 +55,31 @@ function Dashboard() {
       <div className="dashboard-left">
         <button onClick={handleSortByName}>Sort by Name</button>
         <button onClick={handleSortByDate}>Sort by Date</button>
-        <Link to="/create-task">Create New Task</Link>
+        <button onClick={() => {
+          //make edit button state false
+          setShowCreateTask(!showCreateTask);
+            if (showCreateTask) {
+              setShowEditTask(false);
+            }
+          }}>Create New Task
+        </button>
+        <p>Test functionality of Edit button below since I do not have access to database</p>
+        <button onClick={() => setShowEditTask(!showEditTask)}>Edit Task</button>
+        <button className={style.logOut_btn}> Log Out</button>
       </div>
-      <div className="dashboard-right">
-        {/* {sortedTasks.map((task) => (
-          <TaskCard key={task._id} task={tasks} onDelete={handleDeleteTask} />
-        ))} */}
-        {tasks.length === 0 ? (
-          <h1 style={{ textAlign: "center" }}>YOU HAVE NO TASKS 🤗</h1>
+      <div className={`dashboard-right ${showCreateTask ? "dashboard-create show" : (showEditTask ? "dashboard-edit show" : "")}`}>
+        {showCreateTask ? (
+          <CreateTask setTasks={setTasks} setShowCreateTask={setShowCreateTask} />
+        ) : showEditTask ? (
+          <EditTask task={editTask} setTasks={setTasks} setShowEditTask={setShowEditTask} />
         ) : (
-          <TaskList tasks={tasks} />
+          <div>
+            {tasks.length === 0 ? (
+              <h1 style={{ textAlign: "center" }}>YOU HAVE NO TASKS 🤗</h1>
+            ) : (
+              <TaskList tasks={sortedTasks} onDelete={handleDeleteTask} onEdit={handleEditTask} />
+            )}
+          </div>
         )}
       </div>
     </div>
