@@ -1,3 +1,4 @@
+import { PulseLoader } from "react-spinners";
 import { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
@@ -14,6 +15,7 @@ const Login = () => {
 
   const [data, setData] = useState({ username: "", password: "" });
   const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleChange = ({ currentTarget: input }) => {
     setData({ ...data, [input.name]: input.value });
@@ -21,6 +23,7 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
     dispatch({ type: "LOGIN_START" });
     try {
       const res = await axios.post(
@@ -35,6 +38,7 @@ const Login = () => {
     } catch (err) {
       dispatch({ type: "LOGIN_FAILURE" });
     }
+    setIsLoading(false);
   };
 
   return (
@@ -64,13 +68,19 @@ const Login = () => {
               ref={passwordRef}
             />
             {error && <div className={styles.error_msg}>{error}</div>}
-            <button
-              type="submit"
-              className={styles.green_btn}
-              disabled={isFetching}
-            >
-              Sign In
-            </button>
+            {isLoading ? (
+              <div className={styles.spinner_container}>
+                <PulseLoader color={"#e64980"} size={15} margin={2} />
+              </div>
+            ) : (
+              <button
+                type="submit"
+                className={styles.green_btn}
+                disabled={isFetching}
+              >
+                Sign In
+              </button>
+            )}
 
             <Developed />
           </form>
