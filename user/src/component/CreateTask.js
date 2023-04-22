@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import styles from "./CreateTask.module.css";
 import axios from "axios";
 import { Context } from "../context/Context";
+import { toast } from "react-toastify";
 
 function CreateTask({ onCreate, setShowCreateTask }) {
   const { user } = useContext(Context);
@@ -26,7 +27,9 @@ function CreateTask({ onCreate, setShowCreateTask }) {
         newTask
       );
       window.location.replace("/dashboard");
-    } catch (error) {}
+    } catch (error) {
+      toast.error("Please fill out all fields");
+    }
   };
 
   // function handleCategoryChange(event) {
@@ -68,6 +71,7 @@ function CreateTask({ onCreate, setShowCreateTask }) {
             type="date"
             value={dueDate}
             onChange={(e) => setDueDate(e.target.value)}
+            required
           />
         </label>
         <button

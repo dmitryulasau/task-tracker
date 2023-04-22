@@ -10,6 +10,9 @@ import { Context } from "../context/Context";
 
 import styles from "./EditTask.module.css";
 
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 library.add(faTrashAlt, faPenAlt);
 
 function convertDate(isoDate) {
@@ -41,6 +44,7 @@ function TaskCard({ task, onDelete }) {
           data: { username: user.username },
         }
       );
+
       window.location.replace("/dashboard");
     } catch (err) {}
   };

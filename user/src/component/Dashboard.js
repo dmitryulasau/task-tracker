@@ -6,6 +6,8 @@ import CreateTask from "./CreateTask";
 import EditTask from "./EditTask";
 import { useContext } from "react";
 import { Context } from "../context/Context";
+// import { toast } from "react-toastify";
+// import "react-toastify/dist/ReactToastify.css";
 
 function Dashboard() {
   const { user } = useContext(Context);
@@ -82,7 +84,7 @@ function Dashboard() {
               Sort by Date
             </button>
             <button
-              className="default-button"
+              className="default-button button-create"
               onClick={() => {
                 //make edit button state false
                 setShowCreateTask(!showCreateTask);

@@ -146,3 +146,16 @@ h2 {
     0 1.3px 5.3px rgb(0, 0, 0, 0.3);
   transition: background-color 0.5s ease;
 }
+
+.dashboard-left button:nth-child(3) {
+  margin-top: 1.5rem;
+  font-size: 1.2rem;
+  background-color: #087f5b;
+  color: #fff;
+  min-width: 210px;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.dashboard-left button:nth-child(3):hover {
+  background-color: #12b886;
+}
