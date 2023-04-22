@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./Register.module.css";
+import { toast } from "react-toastify";
 
 const Signup = () => {
   const [data, setData] = useState({
@@ -24,14 +25,25 @@ const Signup = () => {
       const { data: res } = await axios.post(url, data);
       navigate("/login");
       console.log(res.message);
+      toast.success("Registration successful!");
     } catch (error) {
       if (
         error.response &&
         error.response.status >= 400 &&
         error.response.status <= 500
       ) {
-        setError(error.response.data.message);
+        const errorData = error.response.data;
+        if (errorData.message === "Username already taken") {
+          setError("Username already taken");
+        } else if (errorData.message === "Email already taken") {
+          setError("Email already taken");
+        } else {
+          setError("This username or email already exist");
+        }
+      } else {
+        setError("Something went wrong");
       }
+      toast.error("User already exist");
     }
   };
 

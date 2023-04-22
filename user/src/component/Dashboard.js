@@ -1,14 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import TaskCard from "./TaskCard";
-import style from "./Dashboard.css";
+import "./Dashboard.css";
 import axios from "axios";
 import TaskList from "./TaskList";
 import CreateTask from "./CreateTask";
 import EditTask from "./EditTask";
 import { useContext } from "react";
 import { Context } from "../context/Context";
-import Developed from "./Developed";
 
 function Dashboard() {
   const { user } = useContext(Context);
@@ -28,6 +25,7 @@ function Dashboard() {
       const res = await axios.get(
         "https://tasktracker-mqm9.onrender.com/tasks/"
       );
+
       setTasks(res.data);
     };
 
@@ -69,70 +67,77 @@ function Dashboard() {
   });
 
   return (
-    <div>
-      <h2 style={{ textAlign: "center", fontWeight: 600 }}>
-        Hello, {user.username}!
-      </h2>
-      {isLoaded && <span className="dividor"></span>}
-      <div className="dashboard">
-        <div className="dashboard-left">
-          <button onClick={handleSortByName}>Sort by Name</button>
-          <button onClick={handleSortByDate}>Sort by Date</button>
-          <button
-            onClick={() => {
-              //make edit button state false
-              setShowCreateTask(!showCreateTask);
-              if (showCreateTask) {
-                setShowEditTask(false);
-              }
-            }}
-          >
-            Create New Task
-          </button>
+    <>
+      <div>
+        <h2 style={{ textAlign: "center", fontWeight: 600 }}>
+          Hello, {user.username}!
+        </h2>
+        {isLoaded && <span className="dividor"></span>}
+        <div className="dashboard">
+          <div className="dashboard-left">
+            <button className="default-button" onClick={handleSortByName}>
+              Sort by Name
+            </button>
+            <button className="default-button" onClick={handleSortByDate}>
+              Sort by Date
+            </button>
+            <button
+              className="default-button"
+              onClick={() => {
+                //make edit button state false
+                setShowCreateTask(!showCreateTask);
+                if (showCreateTask) {
+                  setShowEditTask(false);
+                }
+              }}
+            >
+              Create New Task
+            </button>
 
-          <button className={style.logOut_btn} onClick={handleLogout}>
-            Log Out
-          </button>
-        </div>
-        <div
-          className={`dashboard-right ${
-            showCreateTask
-              ? "dashboard-create show"
-              : showEditTask
-              ? "dashboard-edit show"
-              : ""
-          }`}
-        >
-          {showCreateTask ? (
-            <CreateTask
-              setTasks={setTasks}
-              setShowCreateTask={setShowCreateTask}
-            />
-          ) : showEditTask ? (
-            <EditTask
-              task={editTask}
-              setTasks={setTasks}
-              setShowEditTask={setShowEditTask}
-            />
-          ) : (
-            <div>
-              {tasks.filter((t) => t.username === user.username).length ===
-              0 ? (
-                <h1 style={{ textAlign: "center", color: "#868e96" }}>
-                  YOU HAVE NO TASKS YET 🤗
-                </h1>
-              ) : (
-                <TaskList
-                  tasks={sortedTasks}
-                  onDelete={handleDeleteTask}
-                  onEdit={handleEditTask}
-                />
-              )}
-            </div>
-          )}
+            <button className="default-button" onClick={handleLogout}>
+              Log Out
+            </button>
+          </div>
+          <div
+            className={`dashboard-right ${
+              showCreateTask
+                ? "dashboard-create show"
+                : showEditTask
+                ? "dashboard-edit show"
+                : ""
+            }`}
+          >
+            {showCreateTask ? (
+              <CreateTask
+                setTasks={setTasks}
+                setShowCreateTask={setShowCreateTask}
+              />
+            ) : showEditTask ? (
+              <EditTask
+                task={editTask}
+                setTasks={setTasks}
+                setShowEditTask={setShowEditTask}
+              />
+            ) : (
+              <div>
+                {tasks.filter((t) => t.username === user.username).length ===
+                0 ? (
+                  <h1 style={{ textAlign: "center", color: "#868e96" }}>
+                    YOU HAVE NO TASKS YET 🤗
+                  </h1>
+                ) : (
+                  <TaskList
+                    tasks={sortedTasks}
+                    onDelete={handleDeleteTask}
+                    onEdit={handleEditTask}
+                  />
+                )}
+              </div>
+            )}
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

@@ -7,6 +7,7 @@ import styles from "./Login.module.css";
 import { useContext, useRef } from "react";
 import { Context } from "../context/Context";
 import Developed from "./Developed";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const userRef = useRef();
@@ -36,6 +37,7 @@ const Login = () => {
       window.location = "/dashboard";
       dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
     } catch (err) {
+      toast.error("Wrong credentials");
       dispatch({ type: "LOGIN_FAILURE" });
     }
     setIsLoading(false);

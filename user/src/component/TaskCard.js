@@ -1,6 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import style from "./TaskCard.css";
+import "./TaskCard.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faTrashAlt, faPenAlt } from "@fortawesome/free-solid-svg-icons";
@@ -60,6 +59,7 @@ function TaskCard({ task, onDelete }) {
         }
       );
       setUpdateMode(false);
+
       window.location.reload();
     } catch (err) {}
   };
@@ -82,10 +82,6 @@ function TaskCard({ task, onDelete }) {
       fetchTask();
     }
   }, [task._id, updateMode]);
-
-  function redirect() {
-    return <Link to={`/edit-task/${task.id}`}>Edit</Link>;
-  }
 
   function handleStatusChange(event) {
     const newStatus = event.target.value;
@@ -217,11 +213,14 @@ function TaskCard({ task, onDelete }) {
             justifyContent: "space-between",
           }}
         >
-          <button className="update-button" onClick={handleUpdate}>
+          <button
+            className="update-button default-button"
+            onClick={handleUpdate}
+          >
             Update
           </button>
           <button
-            className="cancel-button"
+            className="cancel-button default-button"
             onClick={() => setUpdateMode(false)}
           >
             Cancel

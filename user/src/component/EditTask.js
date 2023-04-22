@@ -5,7 +5,7 @@ function EditTask({ onEdit, setShowEditTask }) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [dueDate, setDueDate] = useState("");
-  const [categories, setCategories] = useState([]);
+  // const [categories, setCategories] = useState([]);
   const [status, setStatus] = useState("Incomplete");
   const [showEditClass, setShowEditClass] = useState(false);
 
@@ -19,10 +19,10 @@ function EditTask({ onEdit, setShowEditTask }) {
     };
   }
 
-  function handleCategoryChange(event) {
-    const category = event.target.value;
-    setCategories((prevCategories) => [...prevCategories, category]);
-  }
+  // function handleCategoryChange(event) {
+  //   const category = event.target.value;
+  //   setCategories((prevCategories) => [...prevCategories, category]);
+  // }
 
   function handleStatusChange(event) {
     const newStatus = event.target.value;
@@ -49,7 +49,7 @@ function EditTask({ onEdit, setShowEditTask }) {
         <label>
           Title:
           <input
-          placeholder="title"
+            placeholder="title"
             className={styles.input}
             type="text"
             value={title}

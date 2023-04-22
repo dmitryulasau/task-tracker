@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState } from "react";
 import styles from "./CreateTask.module.css";
 import axios from "axios";
 import { Context } from "../context/Context";
@@ -9,7 +9,7 @@ function CreateTask({ onCreate, setShowCreateTask }) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [dueDate, setDueDate] = useState("");
-  const [categories, setCategories] = useState([]);
+  // const [categories, setCategories] = useState([]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -29,10 +29,10 @@ function CreateTask({ onCreate, setShowCreateTask }) {
     } catch (error) {}
   };
 
-  function handleCategoryChange(event) {
-    const category = event.target.value;
-    setCategories((prevCategories) => [...prevCategories, category]);
-  }
+  // function handleCategoryChange(event) {
+  //   const category = event.target.value;
+  //   setCategories((prevCategories) => [...prevCategories, category]);
+  // }
 
   function handleExit() {
     setShowCreateTask(false);
