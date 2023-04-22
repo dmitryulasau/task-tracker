@@ -68,19 +68,17 @@ const Login = () => {
               ref={passwordRef}
             />
             {error && <div className={styles.error_msg}>{error}</div>}
-            {isLoading ? (
-              <div className={styles.spinner_container}>
-                <PulseLoader color={"#e64980"} size={15} margin={2} />
-              </div>
-            ) : (
-              <button
-                type="submit"
-                className={styles.green_btn}
-                disabled={isFetching}
-              >
-                Sign In
-              </button>
-            )}
+            <button
+              type="submit"
+              className={styles.green_btn}
+              disabled={isFetching || isLoading} // disable the button when either isFetching or isLoading is true
+            >
+              {isLoading ? (
+                <PulseLoader color={"#ffffff"} size={10} margin={2} />
+              ) : (
+                "Sign In"
+              )}
+            </button>
 
             <Developed />
           </form>
