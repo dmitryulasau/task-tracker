@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { PulseLoader } from "react-spinners";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./Register.module.css";
@@ -12,6 +13,7 @@ const Signup = () => {
   });
   const [error, setError] = useState("");
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleChange = ({ currentTarget: input }) => {
     setData({ ...data, [input.name]: input.value });
@@ -19,6 +21,7 @@ const Signup = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
     try {
       const url = "https://tasktracker-mqm9.onrender.com/auth/register";
 
@@ -27,6 +30,7 @@ const Signup = () => {
       console.log(res.message);
       toast.success("Registration successful!");
     } catch (error) {
+      setIsLoading(false);
       if (
         error.response &&
         error.response.status >= 400 &&
@@ -90,8 +94,16 @@ const Signup = () => {
               className={styles.input}
             />
             {error && <div className={styles.error_msg}>{error}</div>}
-            <button type="submit" className={styles.green_btn}>
-              Sign Up
+            <button
+              type="submit"
+              className={styles.green_btn}
+              disabled={isLoading}
+            >
+              {isLoading ? (
+                <PulseLoader color={"#ffffff"} size={10} margin={2} />
+              ) : (
+                "Sign Up"
+              )}
             </button>
           </form>
         </div>
